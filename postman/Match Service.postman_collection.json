@@ -1,0 +1,54 @@
+{
+  "info": {
+    "name": "Match Service",
+    "_postman_id": "11111111-1111-1111-1111-111111111111",
+    "description": "Colección para probar POST /match del servicio de prueba",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "POST /match",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"candidato\": { \"skills\": [\"java\", \"spring\", \"sql\"], \"experiencia_anios\": 3 },\n  \"vacante\": { \"skills_requeridas\": [\"java\", \"spring\", \"kafka\", \"sql\"], \"experiencia_min\": 5, \"tipo_contrato\": \"indefinido\" }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/match",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "match"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const jsonData = pm.response.json();",
+              "pm.test('Status code is 200', () => pm.response.to.have.status(200));",
+              "pm.test('Response has required keys', () => {",
+              "  pm.expect(jsonData).to.have.property('score');",
+              "  pm.expect(jsonData).to.have.property('categoria');",
+              "  pm.expect(jsonData).to.have.property('cobertura_skills');",
+              "  pm.expect(jsonData).to.have.property('brecha_experiencia');",
+              "  pm.expect(jsonData).to.have.property('razones');",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
