@@ -12,6 +12,9 @@ export class VacanteDto {
     @IsArray({
         message: 'skills_requeridas debe ser un arreglo de strings',
     })
+    @ArrayNotEmpty({
+        message: 'skills_requeridas no debe estar vacío',
+    })
     @IsString({
         each: true,
         message: 'cada skill debe ser un string',

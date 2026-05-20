@@ -40,7 +40,6 @@ describe('MatchService', () => {
     const candidato = { skills: ['any'], experiencia_anios: 1 };
     const vacante = { skills_requeridas: [], experiencia_min: 2, tipo_contrato: 'prestacion_servicios' };
     const res = service.computeMatch(candidato, vacante);
-    console.log(res);
     expect(res.cobertura_skills).toBe(1);
   });
 });

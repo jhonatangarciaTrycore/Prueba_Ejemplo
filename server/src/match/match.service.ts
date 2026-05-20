@@ -33,7 +33,7 @@ export class MatchService {
 
         const razones: string[] = [];
         const porcentaje = Math.round(cobertura_skills * 100);
-        razones.push(`Cobertura de skills ${matchCount}/${skillsReq.length} (${porcentaje}%)`);
+        skillsReq.length == 0 ? razones.push(`Sin skills requeridas (100%)`) : razones.push(`Cobertura de skills ${matchCount}/${skillsReq.length} (${porcentaje}%)`);
 
         if (brecha_experiencia > 0) {
             razones.push(`Brecha de experiencia: ${brecha_experiencia} año${brecha_experiencia > 1 ? 's' : ''} (penalización aplicada)`);

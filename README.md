@@ -9,27 +9,17 @@ Proyecto mínimo para evaluar el *match* entre un candidato y una vacante.
 ```bash
 cd server
 npm install
-npm run start:dev   # iniciar en modo desarrollo (puerto 8080)
+npm run start:dev   # iniciar en modo desarrollo (puerto 5000 por defecto)
 npm test            # ejecutar tests
 ```
 
 ## Siguientes pasos sugeridos
 - Ejecutar `npm install` dentro de `server/` y correr `npm test`.
-- Si quieres que logre el despliegue Docker o `/docs` OpenAPI, dime qué extensión prefieres.
 
 ## Decisiones
 
-- **Caso borde: `skills_requeridas` vacío**: se ha decidido tratar `cobertura_skills = 1.0` (100%). Razonamiento: una vacante sin skills requeridas no debe penalizar a los candidatos; el score debe depender únicamente de la experiencia y del tipo de contrato en ese caso.
-
-- **Redondeo y fórmula**: la implementación sigue exactamente la fórmula de la especificación: `score = round(cobertura_skills*70 + max(0,1 - brecha_experiencia/5)*20 + bonus_contrato)`. Los tests usan el redondeo estándar de JavaScript (`Math.round`).
+- **Caso borde — `skills_requeridas = []`**: en ese caso la implementación trata `cobertura_skills = 1.0` (100%). Para mayor claridad en la salida, la lista `razones` muestra `Sin skills requeridas (100%)` en lugar de `0/0 (100%)`.
 
 ## Estado de tests
 
 - Los tests unitarios de la lógica (`server/src/match/match.service.spec.ts`) pasan localmente: **5/5**.
-
-Comandos para reproducir:
-```bash
-cd server
-npm install
-npm test
-```
